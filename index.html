@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>About Me</title>
+</head>
+
+<style>
+
+  body{
+    font-family: Helvetica, sans-serif;
+    margin: 0;
+    height: 100%;
+  }
+
+  p{
+   margin: 0; 
+  }
+  .main{
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  .top{
+    display: grid;
+    grid-template-columns: 1fr auto auto auto auto 1fr;
+    place-items: center;
+    position: fixed;
+    width: 100%;
+    background-color: rgb(245,245,248, 0.8);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-txt{
+    margin: 0;
+    text-align: center;
+    margin: 14px 15px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.5s;
+    text-decoration: none;
+    color: black;
+  }
+
+  .nav-txt:hover{
+    color: rgb(65, 131, 253);
+  }
+
+  .aboutmeconmain{
+    display: grid;
+    grid-template-columns: auto;
+    margin-top: 80px;
+  }
+  .aboutmecon{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pfpcon{
+    display: grid;
+    grid-template-columns: auto;
+    place-items: end;
+  }
+
+  .descriptioncon{
+    display: grid;
+    grid-template-rows: auto auto auto 1fr;
+    padding: 0 50px;
+  }
+
+  .aboutmetxt{
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .subtitletxt{
+    margin: 10px 0 10px 0;
+    color: rgb(109, 109, 109);
+  }
+
+  .separator{
+    width: 10%;
+    height: 1px;
+    background-color: rgb(187, 187, 187);
+    margin-top: 20px;
+  }
+
+  .shortdescon{
+    margin-top: 20px;
+  }
+
+  .shortdes{
+    text-align: justify;
+  }
+
+  .skillscon{
+    display: grid;
+    grid-template-rows: auto;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .skillscon1{
+    height: 25px;
+    background-color: rgb(190, 190, 190);
+    border-radius: 50px;
+    margin: 10px 0 10px 0;
+  }
+
+  .skillsfullbar1{
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    border-radius: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .editing{
+    width: 90%;
+  }
+
+  .designing{
+    width: 75%;
+  }
+
+  .programming{
+    width: 60%;
+  }
+
+  .skillstxt{
+    color: white;
+  }
+
+  .skillstype{
+    margin-left: 10px;
+  }
+
+  .skillspercent{
+    text-align: end;
+    margin-right: 10px;
+  }
+
+  .servicesmaincon{
+    display: grid;
+    grid-template-rows: auto;
+    background-color: rgb(240, 240, 240);
+  }
+
+  .topservices{
+    display: grid;
+    place-items: center;
+    padding: 80px 0;
+  }
+
+  .services{
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  .bottomservices{
+    display: grid;
+    grid-template-rows: auto;
+    padding: 0 50px;
+  }
+
+  .columns{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding-bottom: 20px;
+  }
+
+  .card1{
+    display: grid;
+    grid-template-rows: auto; 
+    place-items: center;
+    background-color: white;
+    margin: 0 10px;
+  }
+
+  .logocon{
+    background-color: rgb(224, 224, 224);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: grid;
+    place-items: center;
+    margin-top: 20px; 
+    margin-bottom: 20px;
+  }
+
+  .logo{
+    font-size: 30px;
+  }
+
+  .title{
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 20px; 
+    margin-bottom: 20px;
+  }
+
+  .carddes{
+    margin: 0 30px 20px 30px;
+    text-align: center;
+  }
+
+  /* contacts */
+  .contacts{
+    display: grid;
+    grid-template-rows: auto;
+    width: 100%;
+  }
+
+  .contacts2{
+    padding: 0 0.5% 0 0.5%;
+  }
+
+
+  .contactscon{
+    display: grid;
+    grid-template-columns: auto 1fr auto 1fr auto 1fr auto 1fr auto 1fr auto;
+    align-items: center;
+  }
+
+  .socials{
+    margin: none;
+    text-decoration: none;
+    color: rgb(120, 120, 121);
+    font-size: 13px;
+  }
+
+  .socials:hover{
+    text-decoration: underline;
+  }
+
+  .hrcon{
+    display: grid;
+    grid-template-columns: auto;
+    place-items: center;
+  }
+
+  .hr2{
+    width: 100%;
+    height: 1px;
+    background-color: rgb(206,206,207);
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .hr3{
+    width: 1px;
+    height: 60%;
+    background-color: rgb(206,206,207);
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .ctxt{
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+  }
+
+  .fa-brands{
+    font-size: 14px;
+    color: rgb(120, 120, 121);
+  }
+
+  .copyrightcon{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    padding-bottom: 10px;
+  }
+
+  .crtxt{
+    color: rgb(120, 120, 121);
+    font-size: 13px;
+  }
+
+  .crtxt2{
+    text-align: end;
+    color: rgb(120, 120, 121);
+  }
+
+  .myinfos{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .myinfoscon{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+  }
+
+  .infos{
+    margin: 3px 0 3px 10px;
+    color: rgb(120, 120, 121);
+  }
+
+  .infoicons{
+    color: rgb(120, 120, 121);
+  }
+
+  @media screen and (max-width: 768px){
+    .contacts{
+      background-color: rgb(0, 0, 0);
+      width: 100%;
+    }
+
+    .contacts2{
+      background-color: rgb(255, 255, 255);
+      padding: 0 8px;
+    }
+
+    .contactscon{
+    grid-template-columns: auto;
+    }
+
+    .hr3{
+      display: none;
+    }
+
+    .hr2, .hr3{
+      background-color: rgb(206,206,207);
+    }
+
+    .socials{
+      font-size: 12px;
+    }
+
+    .ctxt{
+      font-size: 12px;
+    }
+
+    .copyrightcon{
+      display: grid;
+      grid-template-columns: auto;
+      padding-bottom: 10px;
+    }
+
+    .crtxt2, .crtxt{
+      text-align: center;
+      margin: 3px 0 3px 0;
+      color: rgb(120, 120, 121);
+    }
+
+    .aboutmecon{
+      grid-template-columns: auto;
+    }
+
+    .pfpcon{
+      place-items: center;
+    }
+
+    .descriptioncon{
+      margin-top: 20px;
+    }
+
+    .titlecon{
+      display: grid;
+      grid-template-rows: auto;
+      place-items: center;
+    }
+
+    .columns{
+      display: grid;
+      grid-template-columns: auto;
+      padding-bottom: 0;
+    }
+
+    .card1{
+      margin-top: 50px;
+    }
+
+    .bottomservices{
+      padding: 0 20px; 
+      padding-bottom: 20px;
+    }
+
+    .subtitletxt{
+      margin: 5px 0 5px 0;
+      color: rgb(109, 109, 109);
+    }
+
+    .topservices{
+      display: grid;
+      place-items: center;
+      padding: 65px 0 20px 0;
+    }
+
+    .services{
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+  }
+
+</style>
+
+<body>
+
+  <div class="main">
+    <div class="top">
+      <div></div>
+      <a class="nav-txt" href="home.html">Home</a>
+      <a class="nav-txt" href="edits.html">Edits</a>
+      <a class="nav-txt" href="photos.html">Photos</a>
+      <a class="nav-txt" href="aboutme.html">About Me</a>
+      <div></div>
+    </div>
+  </div>
+
+  <div class="aboutmeconmain">
+    <div class="aboutmecon">
+
+      <div class="pfpcon">
+        <img src="pfp.png">
+      </div>
+
+      <div class="descriptioncon">
+        <div class="titlecon">
+          <p class="aboutmetxt txt">About Me.</p>
+          <p class="subtitletxt txt">ADOBE AFTER EFFECTS EDITOR</p>
+          <p class="subtitletxt txt">UI DESIGNER</p>
+          <p class="subtitletxt txt">WEB DEVELOPER</p>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="shortdescon">
+          <p class="shortdes">
+            I am Jhon Patrick D. Acedo, 19 years old. I was born and raised in Purok 11, Siocon, Compostela Valley which was now turned into Davao de Oro.
+            I am currently residing at my aunt's residence here in Purok Ramihan, Datu Abdul, Panabo City for my college studies. I am a second year Bachelor 
+            of Science in Information Technology student in the prestigious college of Davao del Norte State College. 
+            My hobbies are playing online games, watching sci-fi movies, editing, and learning astrophysics/physics.
+            My dream is to be a web developer someday and to travel around the world with my family and the love of my life.
+          </p>
+        </div>
+
+        <div class="skillscon">
+          <div class="skillscon1">
+            <div class="skillsfullbar1 editing">
+              <p class="skillstype skillstxt">Editing</p>
+              <p class="skillspercent skillstxt">80%</p>
+            </div>
+          </div>
+          <div class="skillscon1">
+            <div class="skillsfullbar1 designing">
+              <p class="skillstype skillstxt">Designing</p>
+              <p class="skillspercent skillstxt">75%</p>
+            </div>
+          </div>
+          <div class="skillscon1">
+            <div class="skillsfullbar1 programming">
+              <p class="skillstype skillstxt">Programming</p>
+              <p class="skillspercent skillstxt">60%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="myinfos">
+          <div class="addresscon myinfoscon">
+            <i class="infoicons fa-solid fa-location-dot"></i>
+            <p class="addresstxt infos">Purok Ramihan, Datu Abdul, Panabo City, Davao del Norte, 8105</p>
+          </div>
+          <div class="phonenumbercon myinfoscon">
+            <i class="infoicons fa-solid fa-phone"></i>
+            <p class="phonenumbertxt infos">09913501952</p>
+          </div>
+          <div class="emailcon myinfoscon">
+            <i class="infoicons fa-solid fa-envelope"></i>
+            <p class="emailtxt infos">acedo.jhonpatrick@dnsc.edu.ph</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="servicesmaincon">
+
+    <div class="topservices">
+      <p class="services">Services.</p> 
+    </div>
+    <div class="bottomservices">
+      <div class="columns">
+        <div class="card1">
+          <div class="logocon">
+            <i class="logo fa-solid fa-globe"></i>
+          </div>
+          <div class="titlecon">
+            <p class="title">HTML/CSS</p>
+          </div>
+          <div class="descon">
+            <p class="carddes">
+              HTML structures the content of web pages using a series of tags and attributes. 
+              It defines elements like headings, paragraphs, and links. 
+              CSS styles and formats that content to enhance its appearance and layout.</p>
+          </div>
+        </div>
+        <div class="card1">
+          <div class="logocon">
+            <i class="logo fa-solid fa-video"></i>
+          </div>
+          <div class="titlecon">
+            <p class="title">Videography</p>
+          </div>
+          <div class="descon">
+            <p class="carddes">
+              Videography is the art of capturing moving images on electronic media, like video tapes or digital storage. 
+              It involves techniques such as filming, editing, and producing video content for various purposes. 
+              Videographers use cameras, lighting, and editing software to create engaging visual stories.</p>
+          </div>
+        </div>
+        <div class="card1">
+          <div class="logocon">
+            <i class="logo fa-solid fa-camera"></i>
+          </div>
+          <div class="titlecon">
+            <p class="title">Photography</p>
+          </div>
+          <div class="descon">
+            <p class="carddes">
+              It  captures still images using a camera. 
+              It involves techniques like framing, lighting, and composition to create visually appealing photos. 
+              Photographers use various equipment and editing tools to enhance their images.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="card1">
+          <div class="logocon">
+            <i class=" logo fa-solid fa-pen-to-square"></i>
+          </div>
+          <div class="titlecon">
+            <p class="title">Editing</p>
+          </div>
+          <div class="descon">
+            <p class="carddes">
+              This involves refining and enhancing video, graphics, and photos to achieve desired clarity and impact. 
+              Through precise adjustments in timing, color, and composition, editors transform raw footage and images into polished visual content. 
+              Their expertise lies in seamlessly weaving together elements to convey compelling narratives and aesthetic appeal.</p>
+          </div>
+        </div>
+        <div class="card1">
+          <div class="logocon">
+            <i class="logo fa-solid fa-square"></i>
+          </div>
+          <div class="titlecon">
+            <p class="title">Designing</p>
+          </div>
+          <div class="descon">
+            <p class="carddes">
+              It encompasses the creative process of conceptualizing and structuring websites or layouts, balancing aesthetics with functionality. 
+              Designers meticulously arrange elements like typography, imagery, and navigation to optimize user experience and visual appeal. 
+              Their goal is to craft cohesive and intuitive designs that effectively communicate information and engage audiences.</p>
+          </div>
+        </div>
+        <div class="card1">
+          <div class="logocon">
+            <i class="logo fa-solid fa-music"></i>
+          </div>
+          <div class="titlecon">
+            <p class="title">Music Editing</p>
+          </div>
+          <div class="descon">
+            <p class="carddes">
+              It involves the art of remixing and enhancing audio tracks to create new compositions or improve existing ones. 
+              Editors utilize tools like digital audio workstations (DAWs) to add effects, adjust tempo, and blend different elements seamlessly. 
+              Their expertise lies in transforming raw recordings into polished tracks that resonate with listeners through creative manipulation and technical finesse.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contacts">
+    <div class="contacts2">
+      <div class="hrcon">
+        <div class="hr2"></div>
+      </div>
+      <div>
+        <p class="ctxt">Socials</p>
+      </div>
+      <div class="contactscon">
+        <div>
+          <a class="socials" href="https://www.instagram.com/pjs_editx/" target="_blank">
+            <!-- <i class="fa-brands fa-instagram ig ctxt"></i> -->
+            Instagram 1
+          </a>
+        </div>
+        <div class="hrcon">
+          <div class="hr3"></div>
+        </div>
+        <div>
+          <a class="socials" href="https://www.instagram.com/_lemonqde/" target="_blank">
+            <!-- <i class="fa-brands fa-instagram ig ctxt"></i> -->
+            Instagram 2
+          </a>
+        </div>
+        <div class="hrcon">
+          <div class="hr3"></div>
+        </div>
+        <div>
+          <a class="socials" href="https://www.instagram.com/Patriarch_25/" target="_blank">
+            <!-- <i class="fa-brands fa-instagram ig ctxt"></i> -->
+            Instagram 3 
+          </a>
+        </div>
+        <div class="hrcon">
+          <div class="hr3"></div>
+        </div>
+        <div>
+          <a class="socials" href="https://www.facebook.com/millenialism.millenialsm?mibextid=LQQJ4d" target="_blank">
+            <!-- <i class="fa-brands fa-facebook facebook ctxt"></i> -->
+            Facebook
+          </a>
+        </div>
+        <div class="hrcon">
+          <div class="hr3"></div>
+        </div>
+        <div>
+          <a class="socials" href="https://www.tiktok.com/@pjodeca?_t=8nMFB4uimgx&_r=1" target="_blank">
+            <!-- <i class="fa-brands fa-tiktok tiktok ctxt"></i> -->
+            Tiktok
+          </a>
+        </div>
+        <div class="hrcon">
+          <div class="hr3"></div>
+        </div>
+        <div>
+          <a class="socials" href="https://youtube.com/@pjs_editx2654?si=0vz7bj9mzEHGrQpJ" target="_blank">
+            <!-- <i class="fa-brands fa-youtube youtube ctxt"></i> -->
+            YouTube
+          </a>
+        </div>
+      </div>
+      <div class="hrcon">
+        <div class="hr2"></div>
+      </div>
+      <div class="copyrightcon">
+        <div>
+          <p class="crtxt"> Copyright &copy; 2024 Jhon Patrick D. Acedo. All rights reserved. </p>
+        </div>
+        <div>
+          <p class="crtxt crtxt2">Patriarch_25</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+</html>
