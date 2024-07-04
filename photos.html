@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Photos</title>
+</head>
+
+<style>
+
+  body{
+    font-family: Helvetica, sans-serif;
+    margin: 0;
+    height: 100%;
+
+  }
+
+  p{
+   margin: 0; 
+  }
+  .main{
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+  }
+
+  .top{
+    display: grid;
+    grid-template-columns: 1fr auto auto auto auto 1fr;
+    place-items: center;
+    position: fixed;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    z-index: 2000;
+  }
+
+  .nav-txt{
+    margin: 0;
+    text-align: center;
+    margin: 14px 15px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.5s;
+    text-decoration: none;
+    color: black;
+  }
+
+  .nav-txt:hover{
+    color: rgb(65, 131, 253);
+  }
+
+  @keyframes slide {
+    from{
+      transform: translateX(0);
+    }
+    to{
+      transform: translateX(-100%);
+    }
+  }
+
+  .carouselconmain{
+    margin-top: 50px;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: 1s;
+  }
+
+  .carouselconmain:hover .carouselcon{
+    animation-play-state: paused;
+  }
+
+  .carouselcon{
+    display: inline-block;
+    animation: 80s slide infinite linear;
+  }
+
+  .imgs{
+    width: 100%; 
+    scale: 100%;
+    transition: 0.5s;
+  }
+
+  .imgcon{
+    transition: 0.5s;
+    width: 500px;
+    margin: 0 10px;
+    display: grid;
+    grid-template-columns: auto;
+    place-items: center;
+    cursor: pointer;
+  }
+
+  .imgs:hover{
+    scale: 103%;
+    filter: blur(3px);
+    opacity: .8;
+  }
+
+  .imgcon:hover .buttoncon1{
+    opacity: 1;
+  }
+  
+  .previewconmain{
+    margin-top: 80px;
+    display: grid;
+    grid-template-rows: auto;
+    place-items: center;
+  }
+
+  .maintxt, .secondarytxt{
+    text-align: center;
+    margin: 0 50px;
+  }
+
+  .maintxt{
+    font-weight: 600;
+    font-size: 60px;
+  }
+
+  .secondarytxt{
+    font-size: 20px;
+  }
+
+  .aboutme{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100px;
+    font-size: 13px;
+    padding: 10px 0 10px 0;
+    border-radius: 50px;
+    border: none;
+    background-color: rgb(0,113,227);
+    color: white;
+    cursor: pointer;
+    transition: 0.8s;
+  }
+
+  .aboutme2{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    padding: 10px 0 10px 0;
+    border-radius: 50px;
+    border: none;
+    background-color: rgb(0,113,227);
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 10px 10px;
+  }
+
+  .aboutme:hover{
+    background-color: rgb(39, 133, 228);
+  }
+
+  .buttoncon1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    place-items: center;
+    position: absolute;
+    z-index: 1000;
+    margin-top: -215px;
+    opacity: 0;
+    transition: 0.5s;
+    width: 500px;
+  }
+
+  .contacts{
+    display: grid;
+    grid-template-rows: auto;
+    width: 100%;
+  }
+
+  .contacts2{
+    padding: 0 0.5% 0 0.5%;
+  }
+
+
+  .contactscon{
+    display: grid;
+    grid-template-columns: auto 1fr auto 1fr auto 1fr auto 1fr auto 1fr auto;
+    align-items: center;
+  }
+
+  .socials{
+    margin: none;
+    text-decoration: none;
+    color: rgb(120, 120, 121);
+    font-size: 13px;
+  }
+
+  .socials:hover{
+    text-decoration: underline;
+  }
+
+  .hrcon{
+    display: grid;
+    grid-template-columns: auto;
+    place-items: center;
+  }
+
+  .hr2{
+    width: 100%;
+    height: 1px;
+    background-color: rgb(206,206,207);
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .hr3{
+    width: 1px;
+    height: 60%;
+    background-color: rgb(206,206,207);
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .ctxt{
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+  }
+
+  .fa-brands{
+    font-size: 14px;
+    color: rgb(120, 120, 121);
+  }
+
+  .copyrightcon{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    padding-bottom: 10px;
+  }
+
+  .crtxt{
+    color: rgb(120, 120, 121);
+    font-size: 13px;
+  }
+
+  .crtxt2{
+    text-align: end;
+    color: rgb(120, 120, 121);
+  }
+
+  /* responsive section */
+  @media screen and (max-width: 645px){
+    .myname{
+      font-size: 35px;
+      font-weight: 600;
+    }
+
+    .mymotto{
+      font-size: 20px;
+    }
+
+    .aboutme{
+      width: 75px;
+      font-size: 10px;
+    }
+
+    .pfp{
+      margin-left: 15px;
+      margin-top: 1px;
+    }
+
+    .contacts{
+      background-color: rgb(0, 0, 0);
+      width: 100%;
+    }
+
+    .contacts2{
+      background-color: rgb(255, 255, 255);
+      padding: 0 8px;
+    }
+
+    .contactscon{
+    grid-template-columns: auto;
+    }
+
+    .hr3{
+      display: none;
+    }
+
+    .hr2, .hr3{
+      background-color: rgb(206,206,207);
+    }
+
+    .socials{
+      font-size: 12px;
+    }
+
+    .ctxt{
+      font-size: 12px;
+    }
+
+    .copyrightcon{
+      display: grid;
+      grid-template-columns: auto;
+      padding-bottom: 10px;
+    }
+
+    .crtxt2, .crtxt{
+      text-align: center;
+      margin: 3px 0 3px 0;
+      color: rgb(120, 120, 121);
+    }
+
+    .maintxt{
+      font-size: 35px;
+    }
+
+    .secondarytxt{
+      font-size: 15px;
+      margin: 0 40px;
+    }
+
+    .imgcon{
+     width: 235px; 
+    }
+
+    .carouselconmain{
+      margin-top: 10px;
+    }
+  }
+</style>
+
+<body>
+
+  <div class="main">
+    <div class="top">
+      <div></div>
+      <a class="nav-txt" href="index.html">Home</a>
+      <a class="nav-txt" href="edits.html">Edits</a>
+      <a class="nav-txt" href="photos.html">Photos</a>
+      <a class="nav-txt" href="aboutme.html">About Me</a>
+      <div></div>
+    </div>
+
+    <div class="previewconmain">
+      <div class="previewcon">
+        <p class="maintxt">WELCOME TO MY PHOTOS</p>
+        <P class="secondarytxt">In this section are previews of some of my captured photos, highlighting their mesmerizing beauty.</P>
+      </div>
+      <div class="buttoncon">
+        <button class="aboutme" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/home', '_blank');">
+          Learn More
+        </button>       
+      </div>
+    </div>
+
+    <div class="carouselconmain">
+      <div class="carouselcon">
+        <div class="imgcon" style="display: inline-block;">
+          <!-- assymetrical balance -->
+          <img class="imgs" src="photos/assymetrical.png" alt="Image 2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/asymmetrical-balance', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/asymmetrical-balance', '_blank');">
+              Learn more about Assymetrical Balance.
+            </button>  
+          </div>
+        </div>
+
+        <!-- centered position -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/centered.png" alt="Image 2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/centered-position', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/centered-position', '_blank');">
+              Learn more about Centered Position.
+            </button>  
+          </div>
+        </div>  
+
+        <!-- depth of field -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/depth.jpg" alt="Image 3" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/depth-of-field', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/depth-of-field', '_blank');">
+              Learn more about Depth of Field.
+            </button>  
+          </div>
+        </div>
+
+        <!-- diagonal -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/diagonal.jpg" alt="Image 4" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/diagonal', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/diagonal', '_blank');">
+              Learn more about Diagonal.
+            </button>  
+          </div>
+        </div>
+
+        <!-- fill the frame -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/fill.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/fill-the-frame', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/fill-the-frame', '_blank');">
+              Learn more about Fill The Frame.
+            </button>  
+          </div>
+        </div>
+
+        <!-- framing -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/Framing.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/framing', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/framing', '_blank');">
+              Learn more about Framing.
+            </button>  
+          </div>
+        </div>
+
+        <!-- golden ratio -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/golden.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/golden-ratio', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/golden-ratio', '_blank');">
+              Learn more about Golden Ratio.
+            </button>  
+          </div>
+        </div>
+
+        <!-- leading lines -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/leading.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/leading-lines', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/leading-lines', '_blank');">
+              Learn more about Leading Lines.
+            </button>  
+          </div>
+        </div>
+
+        <!-- negative space -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/negative.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/negative-space', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/negative-space', '_blank');">
+              Learn more about Negative Space.
+            </button>  
+          </div>
+        </div>
+
+        <!-- symmetrical balance -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/symmetrical.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/symmetrical-balance', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/symmetrical-balance', '_blank');">
+              Learn more about Symmetrical Balance.
+            </button>  
+          </div>
+        </div>
+
+        <!-- rule of odds -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/odds.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/rule-of-odds', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/rule-of-odds', '_blank');">
+              Learn more about Rule of Odds.
+            </button>  
+          </div>
+        </div>
+
+        <!-- rule of thirds -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/thirds.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/rule-of-thirds', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/rule-of-thirds', '_blank');">
+              Learn more about Rule of Thirds.
+            </button>  
+          </div>
+        </div>
+      </div>
+
+      <div class="carouselcon">
+        <div class="imgcon" style="display: inline-block;">
+          <!-- assymetrical balance -->
+          <img class="imgs" src="photos/assymetrical.png" alt="Image 2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/asymmetrical-balance', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/asymmetrical-balance', '_blank');">
+              Learn more about Assymetrical Balance.
+            </button>  
+          </div>
+        </div>
+
+        <!-- centered position -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/centered.png" alt="Image 2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/centered-position', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/centered-position', '_blank');">
+              Learn more about Centered Position.
+            </button>  
+          </div>
+        </div>  
+
+        <!-- depth of field -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/depth.jpg" alt="Image 3" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/depth-of-field', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/depth-of-field', '_blank');">
+              Learn more about Depth of Field.
+            </button>  
+          </div>
+        </div>
+
+        <!-- diagonal -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/diagonal.jpg" alt="Image 4" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/diagonal', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/diagonal', '_blank');">
+              Learn more about Diagonal.
+            </button>  
+          </div>
+        </div>
+
+        <!-- fill the frame -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/fill.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/fill-the-frame', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/fill-the-frame', '_blank');">
+              Learn more about Fill The Frame.
+            </button>  
+          </div>
+        </div>
+
+        <!-- framing -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/Framing.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/framing', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/framing', '_blank');">
+              Learn more about Framing.
+            </button>  
+          </div>
+        </div>
+
+        <!-- golden ratio -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/golden.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/golden-ratio', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/golden-ratio', '_blank');">
+              Learn more about Golden Ratio.
+            </button>  
+          </div>
+        </div>
+
+        <!-- leading lines -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/leading.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/leading-lines', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/leading-lines', '_blank');">
+              Learn more about Leading Lines.
+            </button>  
+          </div>
+        </div>
+
+        <!-- negative space -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/negative.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/negative-space', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/negative-space', '_blank');">
+              Learn more about Negative Space.
+            </button>  
+          </div>
+        </div>
+
+        <!-- symmetrical balance -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/symmetrical.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/symmetrical-balance', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/symmetrical-balance', '_blank');">
+              Learn more about Symmetrical Balance.
+            </button>  
+          </div>
+        </div>
+
+        <!-- rule of odds -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/odds.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/rule-of-odds', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/rule-of-odds', '_blank');">
+              Learn more about Rule of Odds.
+            </button>  
+          </div>
+        </div>
+
+        <!-- rule of thirds -->
+        <div class="imgcon" style="display: inline-block;">
+          <img class="imgs" src="photos/thirds.jpg" alt="Image 5" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/rule-of-thirds', '_blank');">
+          <div class="buttoncon1">
+            <button class="aboutme2" onclick="window.open('https://sites.google.com/dnsc.edu.ph/thesnapshotter/compositions/rule-of-thirds', '_blank');">
+              Learn more about Rule of Thirds.
+            </button>  
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="contacts">
+      <div class="contacts2">
+        <div class="hrcon">
+          <div class="hr2"></div>
+        </div>
+        <div>
+          <p class="ctxt">Socials</p>
+        </div>
+        <div class="contactscon">
+          <div>
+            <a class="socials" href="https://www.instagram.com/pjs_editx/" target="_blank">
+              <!-- <i class="fa-brands fa-instagram ig ctxt"></i> -->
+              Instagram 1
+            </a>
+          </div>
+          <div class="hrcon">
+            <div class="hr3"></div>
+          </div>
+          <div>
+            <a class="socials" href="https://www.instagram.com/_lemonqde/" target="_blank">
+              <!-- <i class="fa-brands fa-instagram ig ctxt"></i> -->
+              Instagram 2
+            </a>
+          </div>
+          <div class="hrcon">
+            <div class="hr3"></div>
+          </div>
+          <div>
+            <a class="socials" href="https://www.instagram.com/Patriarch_25/" target="_blank">
+              <!-- <i class="fa-brands fa-instagram ig ctxt"></i> -->
+              Instagram 3 
+            </a>
+          </div>
+          <div class="hrcon">
+            <div class="hr3"></div>
+          </div>
+          <div>
+            <a class="socials" href="https://www.facebook.com/millenialism.millenialsm?mibextid=LQQJ4d" target="_blank">
+              <!-- <i class="fa-brands fa-facebook facebook ctxt"></i> -->
+              Facebook
+            </a>
+          </div>
+          <div class="hrcon">
+            <div class="hr3"></div>
+          </div>
+          <div>
+            <a class="socials" href="https://www.tiktok.com/@pjodeca?_t=8nMFB4uimgx&_r=1" target="_blank">
+              <!-- <i class="fa-brands fa-tiktok tiktok ctxt"></i> -->
+              Tiktok
+            </a>
+          </div>
+          <div class="hrcon">
+            <div class="hr3"></div>
+          </div>
+          <div>
+            <a class="socials" href="https://youtube.com/@pjs_editx2654?si=0vz7bj9mzEHGrQpJ" target="_blank">
+              <!-- <i class="fa-brands fa-youtube youtube ctxt"></i> -->
+              YouTube
+            </a>
+          </div>
+        </div>
+        <div class="hrcon">
+          <div class="hr2"></div>
+        </div>
+        <div class="copyrightcon">
+          <div>
+            <p class="crtxt"> Copyright &copy; 2024 Jhon Patrick D. Acedo. All rights reserved. </p>
+          </div>
+          <div>
+            <p class="crtxt crtxt2">Patriarch_25</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+</body>
+</html>

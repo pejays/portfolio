@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carousel with Scrollbar and Hover Effect</title>
+  
+  <style>
+    /* Basic styling */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .carousel-container {
+      width: 100%;
+      overflow-x: auto; /* Add horizontal scrollbar */
+      position: relative;
+    }
+
+    .carousel {
+      display: flex; /* Ensure images are in a row */
+      transition: transform 0.5s ease;
+    }
+
+    .carousel img {
+      flex: 0 0 100%; /* Take full width of carousel */
+      height: auto;
+    }
+
+    /* Custom scrollbar */
+    .carousel-container::-webkit-scrollbar {
+      width: 10px; /* Set scrollbar width */
+      height: 10px;
+    }
+
+    .carousel-container::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 10px;
+    }
+
+    .carousel-container::-webkit-scrollbar-track {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="carousel-container">
+    <div class="carousel">
+      <img src="img1.jpg" alt="Image 1">
+      <img src="img2.jpg" alt="Image 2">
+      <img src="img3.jpg" alt="Image 3">
+      <img src="img4.jpg" alt="Image 4">
+      <img src="img5.jpg" alt="Image 5">
+      <img src="img6.jpg" alt="Image 6">
+      <!-- Add more images as needed -->
+    </div>
+  </div>
+
+  <script>
+    // JavaScript for carousel scrolling
+    const carouselContainer = document.querySelector('.carousel-container');
+    const carousel = document.querySelector('.carousel');
+
+    let scrollPosition = 0;
+    let scrollSpeed = 2;
+
+    carouselContainer.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      scrollPosition += e.deltaY * scrollSpeed;
+      carousel.style.transform = `translateX(${scrollPosition}px)`;
+    });
+
+    // JavaScript for hover effect
+    carouselContainer.addEventListener('mouseenter', function() {
+      carousel.style.transition = 'transform 5s ease'; // Adjust transition duration
+    });
+
+    carouselContainer.addEventListener('mouseleave', function() {
+      carousel.style.transition = 'transform 0.5s ease'; // Adjust transition duration
+    });
+  </script>
+
+</body>
+</html>
