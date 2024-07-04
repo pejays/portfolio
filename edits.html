@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Edits</title>
+</head>
+
+<style>
+
+  body{
+    font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    height: 100%;
+  }
+
+  p{
+   margin: 0; 
+  }
+  .main{
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  .top{
+    display: grid;
+    grid-template-columns: 1fr auto auto auto auto 1fr;
+    place-items: center;
+    position: fixed;
+    width: 100%;
+    background-color: rgb(245,245,248, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 3;
+  }
+
+  .nav-txt{
+    margin: 0;
+    text-align: center;
+    margin: 14px 15px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.5s;
+    text-decoration: none;
+    color: black;
+  }
+
+  .nav-txt:hover{
+    color: rgb(65, 131, 253);
+  }
+
+  .bottom{
+    display: grid;
+    grid-template-rows: auto;
+    place-items: center;
+    background-color: white;
+    margin-top: 300px;
+  }
+
+  .preview{
+    background-color: black;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    place-items: center;
+    margin-top: 40px;
+    position: fixed;
+    z-index: -5;
+    height: 250px;
+  }
+
+  .previewgif{
+    width: 300px;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .previewtxt{
+    color: white;
+    font-size: 50px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 20px 0 20px;
+  }
+
+  .previewtxt2{
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    margin: 0 20px 0 20px;
+  }
+
+  .content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 10px;
+    place-items: center;
+  }
+
+  .videocon{
+    display: grid;
+    grid-template-rows: auto auto auto;
+    margin: 10px 10px 10px 10px;
+    background-color: rgb(0, 0, 0);
+  }
+
+  .videoconmain{
+    display: grid;
+    grid-template-columns: auto;
+    place-items: center;
+    position: relative;
+  }
+
+  .videos{
+    width: 70%;
+    z-index: 1;
+    margin-top: 15px;
+    transition: 0.5s;
+  }
+
+  .videos:hover{
+    border-radius: 20px;
+    scale: 98%;
+  }
+
+  .bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(30px);
+  }
+
+  .hrcon{
+    display: grid;
+    grid-template-columns: auto;
+    place-items: center;
+  }
+
+  .hr{
+    width: 94%;
+    height: 1px;
+    background-color: rgb(68, 68, 68);
+    margin-top: 15px;
+  }
+
+  .statcon{
+    padding: 10px 20px 10px 20px;
+    background-color: rgb(0, 0, 0);
+  }
+
+  .stattxt{
+    color: white;
+    margin: 5px 0 5px 0;
+  }
+
+  .vidtitle{
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .viddes{
+    text-align: justify;
+  }
+
+  .contacts{
+    display: grid;
+    grid-template-rows: auto;
+    width: 98.5%;
+    background-color: rgb(245,245,247);
+  }
+
+  .contactscon{
+    display: grid;
+    grid-template-columns: auto 1fr auto 1fr auto 1fr auto 1fr auto 1fr auto;
+    align-items: center;
+  }
+
+  .socials{
+    margin: none;
+    text-decoration: none;
+    color: rgb(120, 120, 121);
+    font-size: 13px;
+  }
+
+  .socials:hover{
+    text-decoration: underline;
+  }
+
+  .hr2{
+    width: 100%;
+    height: 1px;
+    background-color: rgb(206,206,207);
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .hr3{
+    width: 1px;
+    height: 60%;
+    background-color: rgb(0, 0, 0);
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .ctxt{
+    color: black;
+    font-size: 13px;
+  }
+
+  .fa-brands{
+    font-size: 14px;
+  }
+
+  .copyrightcon{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    padding-bottom: 10px;
+  }
+
+  .crtxt{
+    color: rgb(120, 120, 121);
+    font-size: 13px;
+  }
+
+  .crtxt2{
+    text-align: end;
+    color: black;
+  }
+
+  /* responsive section */
+  @media screen and (min-width: 768px) and (max-width: 1110px){
+      .previewtxt{
+      font-size: 30px;
+      margin: 0 20px 0 20px;
+    }
+
+    .previewtxt2{
+      font-size: 15px;
+      margin: 0 20px 0 20px;
+    }
+  }
+
+  @media screen and (max-width: 800px){
+    .previewtxt{
+      font-size: 30px;
+      margin: 0 20px 0 20px;
+    }
+
+    .previewtxt2{
+      font-size: 15px;
+      margin: 0 20px 0 20px;
+    }
+  }
+
+  @media screen and (max-width: 645px){
+    .content{
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-top: 10px;
+      place-items: center;
+    }
+
+    .contacts{
+      width: 96%;
+      background-color: rgb(255, 255, 255);
+    }
+
+    .contactscon{
+      grid-template-columns: auto;
+    }
+
+    .hr3{
+      display: none;
+    }
+
+    .socials{
+      font-size: 12px;
+    }
+
+    .ctxt{
+      font-size: 12px;
+    }
+
+    .copyrightcon{
+      display: grid;
+      grid-template-columns: auto;
+      padding-bottom: 10px;
+    }
+
+    .crtxt2, .crtxt{
+      text-align: center;
+      margin: 3px 0 3px 0;
+      color: rgb(120, 120, 121);
+    }
+
+    .stattxt{
+      font-size: 13px;
+    }
+  }
+
+
+</style>
+
+<body>
+
+  <div class="main">
+    <div class="top">
+      <div></div>
+      <a class="nav-txt" href="index.html">Home</a>
+      <a class="nav-txt" href="edits.html">Edits</a>
+      <a class="nav-txt" href="photos.html">Photos</a>
+      <a class="nav-txt" href="aboutme.html">About Me</a>
+      <div></div>
+    </div>
+  </div>
+
+  <div class="preview">
+    <div class="shortdescon">
+      <p class="previewtxt">WELCOME TO MY EDITS</p>
+      <p class="previewtxt2">In this section, my Instagram edits are featured along with their title and short description.</p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="content">
+      <div class="videocon">
+        <div class="videoconmain">
+          <video id="background-video1" class="bg" src="jungkook.mp4" alt="" muted></video>
+          <video id="foreground-video1" class="videos" src="jungkook.mp4" controls></video>
+        </div>
+        <script>
+          document.getElementById('foreground-video1').addEventListener('play', function() {
+          document.getElementById('background-video1').play();
+          });
+          
+          document.getElementById('foreground-video1').addEventListener('pause', function() {
+            document.getElementById('background-video1').pause();
+          });
+        </script>
+        <div class="hrcon">
+          <div class="hr"></div>
+        </div>
+        <div class="statcon">
+          <p class="vidtitle stattxt">JUNGKOOK</p>
+          <p class="viddes stattxt">
+            I made this edit on VideoStar last September 1, 2021 where I uploaded on Instagram. I had fun making this one because it was Jungkook's birthday. It was a birthday edit for all the Jungkook editors in Instagram. <br><br>
+          </p>
+        </div>
+      </div>
+
+      <div class="videocon">
+        <div class="videoconmain">
+          <video id="background-video" class="bg" src="v.mp4" alt="" muted></video>
+          <video id="foreground-video" class="videos" src="v.mp4" controls></video>
+        </div>
+        <div class="hrcon">
+          <div class="hr"></div>
+        </div>
+        <div class="statcon">
+          <p class="vidtitle stattxt">V</p>
+          <p class="viddes stattxt">
+            July 13, 2021, that was the day I posted this edit on Instagram. I made this on Videostar out of boredom. The edit did turned out nicely, and I'm happy with the result. I tried to imitate Banqnas' new transition. <br><br>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="videocon">
+        <div class="videoconmain">
+          <video id="background-video2" class="bg" src="lomon.mp4" alt="" muted></video>
+          <video id="foreground-video2" class="videos" src="lomon.mp4" controls></video>
+        </div>
+        <script>
+          document.getElementById('foreground-video2').addEventListener('play', function() {
+          document.getElementById('background-video2').play();
+          });
+          
+          document.getElementById('foreground-video2').addEventListener('pause', function() {
+            document.getElementById('background-video2').pause();
+          });
+        </script>
+        <div class="hrcon">
+          <div class="hr"></div>
+        </div>
+        <div class="statcon">
+          <p class="vidtitle stattxt">LOMON</p>
+          <p class="viddes stattxt">
+            This was my first After Effects edit where I did not expect it to end smoothly like that. As an Instagram editor, using Adobe After Effects for the first time is really hard that's why I got overwhelmed that I finished that one smoothly. It was posted on July 25, 2022.
+          </p>
+        </div>
+      </div>
+
+      <div class="videocon">
+        <div class="videoconmain">
+          <video id="background-video3" class="bg" src="lisa.mp4" alt="" muted></video>
+          <video id="foreground-video3" class="videos" src="lisa.mp4" controls></video>
+        </div>
+        <script>
+          document.getElementById('foreground-video3').addEventListener('play', function() {
+          document.getElementById('background-video3').play();
+          });
+          
+          document.getElementById('foreground-video3').addEventListener('pause', function() {
+            document.getElementById('background-video3').pause();
+          });
+        </script>
+        <div class="hrcon">
+          <div class="hr"></div>
+        </div>
+        <div class="statcon">
+          <p class="vidtitle stattxt">LISA</p>
+          <p class="viddes stattxt">
+            This edit was made for my bias editor in Instagram named as Amelie. People know her as @banqnas on instagram. This was to congratulate Amelie for reaching 87k followers and also a Lisa edit for her because she loves her so much. Also, to thank her for inspiring me to edit.
+          </p>
+        </div>
+      </div>
+
+      <div class="videocon">
+        <div class="videoconmain">
+          <video id="background-video4" class="bg" src="charli.mp4" alt="" muted></video>
+          <video id="foreground-video4" class="videos" src="charli.mp4" controls></video>
+        </div>
+        <script>
+          document.getElementById('foreground-video4').addEventListener('play', function() {
+          document.getElementById('background-video4').play();
+          });
+          
+          document.getElementById('foreground-video4').addEventListener('pause', function() {
+            document.getElementById('background-video4').pause();
+          });
+        </script>
+        <div class="hrcon">
+          <div class="hr"></div>
+        </div>
+        <div class="statcon">
+          <p class="vidtitle stattxt">CHARLI</p>
+          <p class="viddes stattxt">
+            This is a remake edit from @offmelio on Instagram. I tried to remake his edit to practice and enhance my knowledge in editing. I had fun while making the edit. It did turned out pretty well. This was posted on July 14, 2021. <br> <br> 
+          </p>
+        </div>
+      </div>
+
+      <div class="videocon">
+        <div class="videoconmain">
+          <video id="background-video5" class="bg" src="linyi.mp4" alt="" muted></video>
+          <video id="foreground-video5" class="videos" src="linyi.mp4" controls></video>
+        </div>
+        <script>
+          document.getElementById('foreground-video5').addEventListener('play', function() {
+          document.getElementById('background-video5').play();
+          });
+          
+          document.getElementById('foreground-video5').addEventListener('pause', function() {
+            document.getElementById('background-video5').pause();
+          });
+        </script>
+        <div class="hrcon">
+          <div class="hr"></div>
+        </div>
+        <div class="statcon">
+          <p class="vidtitle stattxt">LIN YI</p>
+          <p class="viddes stattxt">
+            Got inspired to make Lin Yi an edit after I watched his "Put Your Hand on My Shoulder" Chinese-drama. He's so cute with this edit and I'm satisfied with the results. Edited this for 3 hours. It was posted on July 9, 2021 in my @pjs_editx account on Instagram. <br><br>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contacts">
+      <div class="hrcon">
+        <div class="hr2"></div>
+      </div>
+      <div>
+        <p class="ctxt">Socials</p>
+      </div>
+      <div class="contactscon">
+        <div>
+          <a class="socials" href="https://www.instagram.com/pjs_editx/" target="_blank">
+            <!-- <i class="fa-brands fa-instagram ig ctxt"></i> -->
+            Instagram 1
+          </a>
+        </div>
+        <div class="hrcon">
+          <div class="hr3"></div>
+        </div>
+        <div>
+          <a class="socials" href="https://www.instagram.com/_lemonqde/" target="_blank">
+            <!-- <i class="fa-brands fa-instagram ig ctxt"></i> -->
+            Instagram 2
+          </a>
+        </div>
+        <div class="hrcon">
+          <div class="hr3"></div>
+        </div>
+        <div>
+          <a class="socials" href="https://www.instagram.com/Patriarch_25/" target="_blank">
+            <!-- <i class="fa-brands fa-instagram ig ctxt"></i> -->
+            Instagram 3
+          </a>
+        </div>
+        <div class="hrcon">
+          <div class="hr3"></div>
+        </div>
+        <div>
+          <a class="socials" href="https://www.facebook.com/millenialism.millenialsm?mibextid=LQQJ4d" target="_blank">
+            <!-- <i class="fa-brands fa-facebook facebook ctxt"></i> -->
+            Facebook
+          </a>
+        </div>
+        <div class="hrcon">
+          <div class="hr3"></div>
+        </div>
+        <div>
+          <a class="socials" href="https://www.tiktok.com/@pjodeca?_t=8nMFB4uimgx&_r=1" target="_blank">
+            <!-- <i class="fa-brands fa-tiktok tiktok ctxt"></i> -->
+            Tiktok
+          </a>
+        </div>
+        <div class="hrcon">
+          <div class="hr3"></div>
+        </div>
+        <div>
+          <a class="socials" href="https://youtube.com/@pjs_editx2654?si=0vz7bj9mzEHGrQpJ" target="_blank">
+            <!-- <i class="fa-brands fa-youtube youtube ctxt"></i> -->
+            YouTube
+          </a>
+        </div>
+      </div>
+      <div class="hrcon">
+        <div class="hr2"></div>
+      </div>
+      <div class="copyrightcon">
+        <div>
+          <p class="crtxt"> Copyright &copy; 2024 Jhon Patrick D. Acedo. All rights reserved. </p>
+        </div>
+        <div>
+          <p class="crtxt crtxt2">Patriarch_25</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('foreground-video').addEventListener('play', function() {
+    document.getElementById('background-video').play();
+    });
+    
+    document.getElementById('foreground-video').addEventListener('pause', function() {
+      document.getElementById('background-video').pause();
+    });
+  </script>
+</body>
+</html>
