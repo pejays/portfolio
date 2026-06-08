@@ -18,6 +18,7 @@
   p{
    margin: 0; 
   }
+  
   .main{
     display: grid;
     grid-template-columns: 1fr auto;
@@ -113,18 +114,6 @@
     position: relative;
   }
 
-  .videos{
-    width: 70%;
-    z-index: 1;
-    margin-top: 15px;
-    transition: 0.5s;
-  }
-
-  .videos:hover{
-    border-radius: 20px;
-    scale: 98%;
-  }
-
   .bg{
     position: absolute;
     top: 0;
@@ -133,6 +122,22 @@
     height: 100%;
     object-fit: cover;
     filter: blur(30px);
+    pointer-events: none;
+    z-index: 0; /* Ensures background stays at the bottom */
+  }
+
+  .videos {
+    width: 70%;
+    position: relative; /* REQUIRED for z-index to work */
+    z-index: 1;         /* Brings clear video above the blurred background */
+    margin-top: 15px;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+
+  .videos:hover{
+    border-radius: 20px;
+    scale: 98%;
   }
 
   .hrcon{
@@ -302,12 +307,6 @@
       font-size: 13px;
     }
   }
-
-  video {
-    display: inline-block;
-  }
-
-
 </style>
 
 <body>
@@ -335,18 +334,22 @@
   <div class="bottom">
     <div class="content">
       <div class="videocon">
-        <div class="videoconmain">
+        <div class="videoconmain" id="container1">
           <video id="background-video1" class="bg" src="jungkook.mp4" alt="" muted></video>
           <video id="foreground-video1" class="videos" src="jungkook.mp4" controls></video>
+          <div class="play-pause-overlay">
+            <i class="fa-solid fa-play"></i>
+          </div>
         </div>
         <script>
-          document.getElementById('foreground-video1').addEventListener('play', function() {
-          document.getElementById('background-video1').play();
-          });
-          
-          document.getElementById('foreground-video1').addEventListener('pause', function() {
-            document.getElementById('background-video1').pause();
-          });
+          (function() {
+            let video = document.getElementById('foreground-video1');
+            let bg = document.getElementById('background-video1');
+            let container = document.getElementById('container1');
+            video.addEventListener('play', function() { bg.play(); container.classList.add('playing'); });
+            video.addEventListener('pause', function() { bg.pause(); container.classList.remove('playing'); });
+            video.addEventListener('ended', function() { container.classList.remove('playing'); });
+          })();
         </script>
         <div class="hrcon">
           <div class="hr"></div>
@@ -360,9 +363,12 @@
       </div>
 
       <div class="videocon">
-        <div class="videoconmain">
+        <div class="videoconmain" id="container2">
           <video id="background-video" class="bg" src="v.mp4" alt="" muted></video>
           <video id="foreground-video" class="videos" src="v.mp4" controls></video>
+          <div class="play-pause-overlay">
+            <i class="fa-solid fa-play"></i>
+          </div>
         </div>
         <div class="hrcon">
           <div class="hr"></div>
@@ -378,18 +384,22 @@
 
     <div class="content">
       <div class="videocon">
-        <div class="videoconmain">
+        <div class="videoconmain" id="container3">
           <video id="background-video2" class="bg" src="lomon.mp4" alt="" muted></video>
           <video id="foreground-video2" class="videos" src="lomon.mp4" controls></video>
+          <div class="play-pause-overlay">
+            <i class="fa-solid fa-play"></i>
+          </div>
         </div>
         <script>
-          document.getElementById('foreground-video2').addEventListener('play', function() {
-          document.getElementById('background-video2').play();
-          });
-          
-          document.getElementById('foreground-video2').addEventListener('pause', function() {
-            document.getElementById('background-video2').pause();
-          });
+          (function() {
+            let video = document.getElementById('foreground-video2');
+            let bg = document.getElementById('background-video2');
+            let container = document.getElementById('container3');
+            video.addEventListener('play', function() { bg.play(); container.classList.add('playing'); });
+            video.addEventListener('pause', function() { bg.pause(); container.classList.remove('playing'); });
+            video.addEventListener('ended', function() { container.classList.remove('playing'); });
+          })();
         </script>
         <div class="hrcon">
           <div class="hr"></div>
@@ -403,18 +413,22 @@
       </div>
 
       <div class="videocon">
-        <div class="videoconmain">
+        <div class="videoconmain" id="container4">
           <video id="background-video3" class="bg" src="lisa.mp4" alt="" muted></video>
           <video id="foreground-video3" class="videos" src="lisa.mp4" controls></video>
+          <div class="play-pause-overlay">
+            <i class="fa-solid fa-play"></i>
+          </div>
         </div>
         <script>
-          document.getElementById('foreground-video3').addEventListener('play', function() {
-          document.getElementById('background-video3').play();
-          });
-          
-          document.getElementById('foreground-video3').addEventListener('pause', function() {
-            document.getElementById('background-video3').pause();
-          });
+          (function() {
+            let video = document.getElementById('foreground-video3');
+            let bg = document.getElementById('background-video3');
+            let container = document.getElementById('container4');
+            video.addEventListener('play', function() { bg.play(); container.classList.add('playing'); });
+            video.addEventListener('pause', function() { bg.pause(); container.classList.remove('playing'); });
+            video.addEventListener('ended', function() { container.classList.remove('playing'); });
+          })();
         </script>
         <div class="hrcon">
           <div class="hr"></div>
@@ -428,18 +442,22 @@
       </div>
 
       <div class="videocon">
-        <div class="videoconmain">
+        <div class="videoconmain" id="container5">
           <video id="background-video4" class="bg" src="charli.mp4" alt="" muted></video>
           <video id="foreground-video4" class="videos" src="charli.mp4" controls></video>
+          <div class="play-pause-overlay">
+            <i class="fa-solid fa-play"></i>
+          </div>
         </div>
         <script>
-          document.getElementById('foreground-video4').addEventListener('play', function() {
-          document.getElementById('background-video4').play();
-          });
-          
-          document.getElementById('foreground-video4').addEventListener('pause', function() {
-            document.getElementById('background-video4').pause();
-          });
+          (function() {
+            let video = document.getElementById('foreground-video4');
+            let bg = document.getElementById('background-video4');
+            let container = document.getElementById('container5');
+            video.addEventListener('play', function() { bg.play(); container.classList.add('playing'); });
+            video.addEventListener('pause', function() { bg.pause(); container.classList.remove('playing'); });
+            video.addEventListener('ended', function() { container.classList.remove('playing'); });
+          })();
         </script>
         <div class="hrcon">
           <div class="hr"></div>
@@ -453,18 +471,22 @@
       </div>
 
       <div class="videocon">
-        <div class="videoconmain">
+        <div class="videoconmain" id="container6">
           <video id="background-video5" class="bg" src="linyi.mp4" alt="" muted></video>
           <video id="foreground-video5" class="videos" src="linyi.mp4" controls></video>
+          <div class="play-pause-overlay">
+            <i class="fa-solid fa-play"></i>
+          </div>
         </div>
         <script>
-          document.getElementById('foreground-video5').addEventListener('play', function() {
-          document.getElementById('background-video5').play();
-          });
-          
-          document.getElementById('foreground-video5').addEventListener('pause', function() {
-            document.getElementById('background-video5').pause();
-          });
+          (function() {
+            let video = document.getElementById('foreground-video5');
+            let bg = document.getElementById('background-video5');
+            let container = document.getElementById('container6');
+            video.addEventListener('play', function() { bg.play(); container.classList.add('playing'); });
+            video.addEventListener('pause', function() { bg.pause(); container.classList.remove('playing'); });
+            video.addEventListener('ended', function() { container.classList.remove('playing'); });
+          })();
         </script>
         <div class="hrcon">
           <div class="hr"></div>
@@ -488,7 +510,6 @@
       <div class="contactscon">
         <div>
           <a class="socials" href="https://www.instagram.com/pjs_editx/" target="_blank">
-            <!-- <i class="fa-brands fa-instagram ig ctxt"></i> -->
             Instagram 1
           </a>
         </div>
@@ -497,7 +518,6 @@
         </div>
         <div>
           <a class="socials" href="https://www.instagram.com/_lemonqde/" target="_blank">
-            <!-- <i class="fa-brands fa-instagram ig ctxt"></i> -->
             Instagram 2
           </a>
         </div>
@@ -506,7 +526,6 @@
         </div>
         <div>
           <a class="socials" href="https://www.instagram.com/Patriarch_25/" target="_blank">
-            <!-- <i class="fa-brands fa-instagram ig ctxt"></i> -->
             Instagram 3
           </a>
         </div>
@@ -515,7 +534,6 @@
         </div>
         <div>
           <a class="socials" href="https://www.facebook.com/millenialism.millenialsm?mibextid=LQQJ4d" target="_blank">
-            <!-- <i class="fa-brands fa-facebook facebook ctxt"></i> -->
             Facebook
           </a>
         </div>
@@ -524,7 +542,6 @@
         </div>
         <div>
           <a class="socials" href="https://www.tiktok.com/@pjodeca?_t=8nMFB4uimgx&_r=1" target="_blank">
-            <!-- <i class="fa-brands fa-tiktok tiktok ctxt"></i> -->
             Tiktok
           </a>
         </div>
@@ -533,7 +550,6 @@
         </div>
         <div>
           <a class="socials" href="https://youtube.com/@pjs_editx2654?si=0vz7bj9mzEHGrQpJ" target="_blank">
-            <!-- <i class="fa-brands fa-youtube youtube ctxt"></i> -->
             YouTube
           </a>
         </div>
@@ -553,13 +569,38 @@
   </div>
 
   <script>
-    document.getElementById('foreground-video').addEventListener('play', function() {
-    document.getElementById('background-video').play();
+    // Global: make all videos clickable to toggle play/pause (YouTube style)
+    document.querySelectorAll('.videos').forEach(video => {
+      video.addEventListener('click', function(e) {
+        // Only toggle when clicking directly on video (not on controls)
+        if (e.target === video) {
+          if (video.paused) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        }
+      });
     });
+
+    // Handle background sync and overlay toggle for the second video
+    const secondVideo = document.getElementById('foreground-video');
+    const secondBg = document.getElementById('background-video');
+    const container2 = document.getElementById('container2');
     
-    document.getElementById('foreground-video').addEventListener('pause', function() {
-      document.getElementById('background-video').pause();
-    });
+    if (secondVideo && secondBg) {
+      secondVideo.addEventListener('play', () => {
+        secondBg.play();
+        container2.classList.add('playing');
+      });
+      secondVideo.addEventListener('pause', () => {
+        secondBg.pause();
+        container2.classList.remove('playing');
+      });
+      secondVideo.addEventListener('ended', () => {
+        container2.classList.remove('playing');
+      });
+    }
   </script>
 </body>
 </html>
